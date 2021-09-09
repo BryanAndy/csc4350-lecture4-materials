@@ -17,31 +17,36 @@
 # and under what circumstances that might make sense. There's no right answer! 
 
 import math
+class hw4:
+    def __init__(self, min_value, max_value, coefficient):
+        self.min_value = min_value
+        self.max_value = max_value
+        self_coefficient = coefficient
+    def complicated_math_operation(self):
+        starting_value = float(input("Enter a starting integer or double value: "))
+        res = starting_value
+        res = self.multiply_it(res)
+        res = self.add_it(res)
+        res = self.sqrt_it(res)
+        res = self.compound_op_it(res)
+        return res
 
-def complicated_math_operation(starting_value, min_value, max_value, coefficient):
-    res = starting_value
-    res = multiply_it(res, min_value, max_value, coefficient)
-    res = add_it(res, min_value, max_value, coefficient)
-    res = sqrt_it(res, min_value, max_value, coefficient)
-    res = compound_op_it(res, min_value, max_value, coefficient)
-    return res
+    def multiply_it(starting_value, self):
+        return max(self.min_value, min(self.max_value, starting_value * self.coefficient))
 
-def multiply_it(starting_value, min_value, max_value, coefficient):
-    return max(min_value, min(max_value, starting_value * coefficient))
-
-def add_it(starting_value, min_value, max_value, coefficient):
-    return max(min_value, min(max_value, starting_value + coefficient))
+    def add_it(starting_value, self):
+        return max(self.min_value, min(self.max_value, starting_value + self.coefficient))
  
-def sqrt_it(starting_value, min_value, max_value, coefficient):
-    return max(min_value, min(max_value, math.pow(starting_value, -coefficient)))
+    def sqrt_it(starting_value, self):
+        return max(self.min_value, min(self.max_value, math.pow(starting_value, -self.coefficient)))
 
-def compound_op_it(starting_value, min_value, max_value, coefficient):
-    return add_it(
-        multiply_it(starting_value, min_value, max_value, coefficient),
-        min_value,
-        max_value,
-        coefficient
-    )
+    def compound_op_it(starting_value, self):
+        return self.add_it(
+            self.multiply_it(starting_value, self.min_value, self.max_value, self.coefficient),
+            self.min_value,
+            self.max_value,
+            self.coefficient
+        )
 
 
     
